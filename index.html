@@ -3,7 +3,52 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>小鱼打字</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			body{
+				background: url(images/bg.jpg) center center no-repeat;
+				background-size: cover;
+			}
+			img{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%,-50%);
+			}
+			.dom{
+				width: 300px;
+				height: 300px;
+				background: url(images/yy.png) no-repeat;
+				position: relative;
+			}
+			.dom span{
+				position: absolute;
+				font-size: 70px;
+				font-weight: bold;
+				left: 70px;
+				text-shadow: 5px 5px 5px red;
+				top: 200px;
+			}
+		</style>
 	</head>
 	<body>
+		<img src="images/play.png"/>
+		<audio src="media/bg.ogg" loop="loop" autoplay="autoplay"></audio>
+		<div class="dom"><span>m</span></div>
+		<script type="text/javascript">
+			let oImg = document.querySelector("img");
+			let oAudio = document.querySelector("audio");
+			oImg.onclick = function(){
+				oImg.parentNode.removeChild(oImg);
+				oAudio.play();
+			}
+		</script>
 	</body>
 </html>
