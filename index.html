@@ -15,6 +15,7 @@
 			body{
 				background: url(images/bg.jpg) center center no-repeat;
 				background-size: cover;
+				overflow: hidden;
 			}
 			img{
 				position: absolute;
@@ -26,7 +27,8 @@
 				width: 300px;
 				height: 300px;
 				background: url(images/yy.png) no-repeat;
-				position: relative;
+				position: absolute;
+				top: 1000px;
 			}
 			.dom span{
 				position: absolute;
@@ -41,14 +43,62 @@
 	<body>
 		<img src="images/play.png"/>
 		<audio src="media/bg.ogg" loop="loop" autoplay="autoplay"></audio>
-		<div class="dom"><span>m</span></div>
+		<!--<div class="dom"><span>m</span></div>-->
 		<script type="text/javascript">
 			let oImg = document.querySelector("img");
 			let oAudio = document.querySelector("audio");
 			oImg.onclick = function(){
 				oImg.parentNode.removeChild(oImg);
 				oAudio.play();
+			this.clear =	setInterval(()=>{
+					let i	= new dom();
+				i.fly();
+					
+				},500)
 			}
+			
+			class dom{
+			constructor(){
+					let odiv = document.createElement("div");
+				odiv.className = "dom";
+				odiv.style.top = "1000px";
+				odiv.style.left = Math.random()*1500+'px';
+				let ospan = document.createElement("span");
+				ospan.innerText=this.getkey();
+				odiv.appendChild(ospan);
+				document.body.appendChild(odiv);
+				this.odiv = odiv;
+			}
+			bomb(){
+				
+				document.body.removeChild(this.odiv);
+				clearInterval(this.clear);
+				
+			}
+			fly(){
+					
+					let offset = parseInt(this.odiv.style.top);
+					setInterval(()=> {
+						offset -= 20;
+						if (offset <= -300 ) {
+							this.bomb();
+						}
+						this.odiv.style.top = offset +"px";
+					},200);
+				}
+			
+			getkey(){
+			let char = String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65);
+			  return char;  
+			}
+			
+			}
+			
+		function getRandomIntInclusive(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min + 1)) + min;  
+		}
 		</script>
 	</body>
 </html>
